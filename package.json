@@ -11,6 +11,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "express-group-routes": "^1.1.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.1",
@@ -19,6 +20,11 @@
   "devDependencies": {
     "dotenv": "^7.0.0",
     "eslint": "^5.16.0",
+    "morgan": "^1.9.1",
     "nodemon": "^1.18.11"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   }
 }
