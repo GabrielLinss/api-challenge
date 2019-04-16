@@ -1,0 +1,200 @@
+FORMAT: 1A
+HOST: http://localhost:3000
+
+# Descrição da API
+
+VUTTR (Very Useful Tools to Remember)
+
+# Group API
+
+## Sobre [/]
+
+Repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags
+
+# Group Tool
+
+## Tools [/api/tools]
+
+### Criar tool [POST]
+
++ Request Criar uma tool
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+            Authorization: Bearer Token
+    + Attributes (Tool)
+
++ Response 201 (application/json)
+    + Attributes (ToolCreated)
+
++ Response 401 (application/json)
+    + Attributes (Error)
+
+### Listar tools [GET]
+
++ Request Listar todas as tools
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+            Authorization: Bearer Token
+
++ Response 200 (application/json)
+    + Attributes (array[Tool])
+
++ Response 401 (application/json)
+    + Attributes (array[])
+
+## Tools [/api/tools/{id}]
+
++ Parameters
+    + id: 1 (string) - Id da tool a ser deletada
+
+### Deletar tool [DELETE]
+
++ Request Deletar tool pelo Id especificado
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+            Authorization: Bearer Token
+
++ Response 204 (application/json)
+
++ Response 401 (application/json)
+    + Attributes (Error)
+
+## Tools [/api/tools?tag={tag}]
+
++ Parameters
+    + tag: node (string) - Nome da tag atribuida à tool
+
+### Listar tools por tag [GET]
+
++ Request Listar todas as tools pela tag especificada
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+            Authorization: Bearer Token
+
++ Response 200 (application/json)
+    + Attributes (array[Tool])
+
++ Response 401 (application/json)
+    + Attributes (array[])
+
+# Group User
+
+## Users [/u/users]
+
+### Criar user [POST]
+
++ Request Criar um user
+    
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+    + Attributes (User)
+
++ Response 201 (application/json)
+    + Attributes (UserCreated)
+
++ Response 400 (application/json)
+    + Attributes (Error)
+
+### Listar users [GET]
+
++ Request Listar todos os users
+    
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
++ Response 200 (application/json)
+    + Attributes (array[User])
+
++ Response 400 (application/json)
+    + Attributes (Error)
+
+## Users [/u/users/{id}]
+
++ Parameters
+    + id: 1 (string) - Id do usuário a ser deletado
+
+### Deletar user [DELETE]
+
++ Request Deletar um user
+    
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
++ Response 204 (application/json)
+
++ Response 400 (application/json)
+    + Attributes (Error)
+
+## Users [/u/users/authenticate]
+
+### Autenticar user [POST]
+
++ Request Autenticar usuário com email e senha
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+    + Attributes (UserLogin)
+
++ Response 200 (application/json)
+    + Attributes (UserLoged)
+
++ Response 400 (application/json)
+    + Attributes (Error)
+
+# Data Structures
+
+## Tool (object)
++ title (string) - Título da tool
++ link (string) - Link para a tool
++ description (string) - Descrição da tool
++ tags (array[string]) - Tags associadas à tool
+
+## User (object)
++ name (string) - Nome do usuário
++ email (string) - Email do usuário
++ password (string) - Senha do usuário
+
+## ToolCreated (Tool)
++ id (string) - Id gerado
++ createdAt (string) - Data de criação
+
+## UserCreated (object)
++ id (string) - Id gerado
++ name (string) - Nome do usuário
++ email (string) - Email do usuário
++ token (string) - Token para o usuário já poder acessar as rotas de tools
++ createdAt (string) - Data de criação
+
+## UserLoged (object)
++ id (string) - Id retornado
++ name (string) - Nome do usuário
++ email (string) - Email do usuário
++ createdAt (string) - Data de criação
++ token (string) - Token para o usuário acessar as rotas de tools
+
+## UserLogin (object)
++ email (string) - Email do usuário
++ password (string) - Senha do usuário
+
+## Error (object)
++ message (string) - Mensagem de erro
