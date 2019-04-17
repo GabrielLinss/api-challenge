@@ -22,7 +22,7 @@ Repositório para gerenciar ferramentas com seus respectivos nomes, links, descr
     + Headers
 
             Accept: application/json
-            Content-Type: application/json
+            Content-Type: charset=utf-8
             Authorization: Bearer Token
     + Attributes (Tool)
 
@@ -43,7 +43,7 @@ Repositório para gerenciar ferramentas com seus respectivos nomes, links, descr
             Authorization: Bearer Token
 
 + Response 200 (application/json)
-    + Attributes (array[Tool])
+    + Attributes (array[ToolReturn])
 
 + Response 401 (application/json)
     + Attributes (array[])
@@ -84,7 +84,7 @@ Repositório para gerenciar ferramentas com seus respectivos nomes, links, descr
             Authorization: Bearer Token
 
 + Response 200 (application/json)
-    + Attributes (array[Tool])
+    + Attributes (array[ToolReturn])
 
 + Response 401 (application/json)
     + Attributes (array[])
@@ -119,7 +119,7 @@ Repositório para gerenciar ferramentas com seus respectivos nomes, links, descr
             Content-Type: application/json
 
 + Response 200 (application/json)
-    + Attributes (array[User])
+    + Attributes (array[UserReturn])
 
 + Response 400 (application/json)
     + Attributes (Error)
@@ -176,21 +176,35 @@ Repositório para gerenciar ferramentas com seus respectivos nomes, links, descr
 
 ## ToolCreated (Tool)
 + id (string) - Id gerado
-+ createdAt (string) - Data de criação
++ createdAt: 17/04/2019 (string) - Data de criação
++ __v: 0 (number)
+
+## ToolReturn (ToolCreated)
++ __v: 0 (number)
 
 ## UserCreated (object)
 + id (string) - Id gerado
 + name (string) - Nome do usuário
 + email (string) - Email do usuário
 + token (string) - Token para o usuário já poder acessar as rotas de tools
-+ createdAt (string) - Data de criação
++ createdAt: 17/04/2019 (string) - Data de criação
++ __v: 0 (number)
 
 ## UserLoged (object)
 + id (string) - Id retornado
 + name (string) - Nome do usuário
 + email (string) - Email do usuário
-+ createdAt (string) - Data de criação
++ createdAt: 17/04/2019 (string) - Data de criação
++ __v: 0 (number)
 + token (string) - Token para o usuário acessar as rotas de tools
+
+## UserReturn (object)
++ id (string) - Id retornado
++ name (string) - Nome do usuário
++ email (string) - Email do usuário
++ createdAt: 17/04/2019 (string) - Data de criação
++ __v: 0 (number)
+
 
 ## UserLogin (object)
 + email (string) - Email do usuário

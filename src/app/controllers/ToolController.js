@@ -5,14 +5,14 @@ exports.save = async (req, res) => {
 
     try{
         if(await Tool.findOne({title})){
-            return res.status(400).send({error: 'Tool already exists'});
+            return res.status(401).send({error: 'Tool already exists'});
         }
 
         const tool = await Tool.create(req.body);
 
-        return res.send(tool);
+        return res.status(201).send(tool);
     } catch (err){
-        return res.status(400).send({error: 'Registration failed'});
+        return res.status(401).send({error: 'Registration failed'});
     }
 };
 
@@ -27,17 +27,17 @@ exports.all = async (req, res) => {
                 return res.status(200).send(tools);
             }
             else{
-                return res.status(400).send({error: 'Tools with tag not found'});
+                return res.status(401).send({error: 'Tools with tag not found'});
             }
         } catch (err){
-            return res.status(400).send({error: 'Operation failed'});
+            return res.status(401).send({error: 'Operation failed'});
         }
     } else {
         try{
             const tools = await Tool.find();
             res.status(200).send(tools);
         } catch (err){
-            return res.status(500).send({error: 'Operation failed'});
+            return res.status(401).send({error: 'Operation failed'});
         }
     }
 };
@@ -47,8 +47,8 @@ exports.delete = async (req, res) => {
 
     try{
         await Tool.findByIdAndDelete(_id);
-        return res.status(200).send({});
+        return res.status(204).send({});
     }catch (err){
-        return res.status(400).send({error: 'Operation failed'});    
+        return res.status(401).send({error: 'Operation failed'});    
     }
 };

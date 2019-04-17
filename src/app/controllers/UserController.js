@@ -21,7 +21,7 @@ exports.save = async (req, res) => {
 
         user.password = undefined;
 
-        return res.send({user, token: generateToken({id: user.id})});
+        return res.status(201).send({user, token: generateToken({id: user.id})});
     } catch (err){
         return res.status(400).send({error: 'Registration failed'});
     }
@@ -30,9 +30,9 @@ exports.save = async (req, res) => {
 exports.all = async (req, res) => {
     try{
         const users = await User.find().select('-password');
-        res.send(users);
+        res.status(200).send(users);
     } catch (err){
-        return res.status(500).send({error: 'Operation failed'});
+        return res.status(400).send({error: 'Operation failed'});
     }
 };
 
@@ -43,7 +43,7 @@ exports.delete = async (req, res) => {
         let user = await User.findById(id);
         if(user != null){
             if(await User.deleteOne(user)){
-                return res.status(200).send();
+                return res.status(204).send();
             }
         }
     }catch (err){
@@ -66,5 +66,5 @@ exports.authenticate = async (req, res) => {
 
     user.password = undefined;
 
-    res.send({user, token: generateToken({id: user.id})});
+    res.status(200).send({user, token: generateToken({id: user.id})});
 };
